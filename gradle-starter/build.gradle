@@ -1,0 +1,47 @@
+/*
+A task is an object which has an API.
+A task has a list of activities.
+A 'gradle build' is a program.
+*/
+
+task hello
+task world
+
+task helloWorld {
+    dependsOn = [ world, hello ]
+}
+
+def whatsUp() {
+    println "hello, whats up?"
+}
+
+world {
+    dependsOn << hello
+    doLast {
+        println "world"
+    }
+}
+
+hello {
+    doLast {
+        print "hello, "
+    }
+}
+
+// Julius Caesar
+/*
+1. Compile the Java
+2. Run tests
+3. Copy static resources
+4. Format test results
+5. build a JAR
+6. top-level task that does all of these things
+ */
+
+apply plugin: 'java'
+
+// task executing non-executable jar without -cp cmd option
+task caesar(type: JavaExec) {
+    main = 'org/alan/GradleStarterApplication'
+    classpath = sourceSets.main.runtimeClasspath
+}
