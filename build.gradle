@@ -1,0 +1,36 @@
+allprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+
+    // Programmer have a mean of accessing all of the other project builds in project graph.
+
+//    project(':gradle-second') {
+//        dependencies {
+//            implementation group: 'commons-codec', name: 'commons-codec', version: '1.9'
+//        }
+//    }
+
+    project(':gradle-third') {
+
+    }
+}
+
+dependencies {
+    implementation project(':gradle-starter')
+//    implementation project(':gradle-second')
+//    implementation project(':gradle-third')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+
+tasks.register('firstRun', JavaExec) {    // task can have types : in this case "JavaExec"
+    mainClass = 'org/alan/GradleStarterApplication'
+    classpath = sourceSets.main.runtimeClasspath
+}

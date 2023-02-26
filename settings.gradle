@@ -1,0 +1,5 @@
+rootProject.name = 'gradle'
+
+include "gradle-second"
+include "gradle-third"
+include "gradle-starter"
